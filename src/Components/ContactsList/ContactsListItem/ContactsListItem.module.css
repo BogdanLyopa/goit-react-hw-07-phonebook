@@ -33,3 +33,11 @@
   font-size: 18px;
   color: #062d6b;
 }
+
+.item-fade-enter {
+  transform: translateX(-100%);
+}
+.item-fade-enter-active {
+  transform: translateX(0);
+  transition: transform 500ms linear;
+}
