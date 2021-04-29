@@ -18,3 +18,21 @@ ul {
   text-align: center;
   color: cornflowerblue;
 }
+.loader {
+  text-align: center;
+}
+
+.error-message {
+  color: red;
+  font-size: 25px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.fade-appear {
+  opacity: 0;
+}
+.fade-appear-active {
+  opacity: 1;
+  transition: opacity 2000ms linear;
+}

@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 
 import ContactsListItem from './ContactsListItem/ContactsListItem';
-import actions from '../../redux/contacts/contactsAction';
+import contactsOperations from '../../redux/contacts/contactsOperations';
+import { getVisibleContacts } from '../../redux/contacts/contactsSelectors';
 
 const ContactsList = ({ contacts, onRemove }) => {
   if (contacts.length === 0) return null;
@@ -21,19 +22,12 @@ const ContactsList = ({ contacts, onRemove }) => {
   );
 };
 
-const getVisibleContacts = (allContacts, filter) => {
-  const normalizedFilter = filter.toLowerCase();
-  return allContacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter),
-  );
-};
-
-const mapStateToProps = ({ contacts: { items, filter } }) => ({
-  contacts: getVisibleContacts(items, filter),
+const mapStateToProps = state => ({
+  contacts: getVisibleContacts(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  onRemove: id => dispatch(actions.removeContact(id)),
+  onRemove: id => dispatch(contactsOperations.removeContact(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactsList);
